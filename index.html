@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buku Mewarnai Anak</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- LOADING SCREEN -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-character">
+                <svg width="120" height="120" viewBox="0 0 200 200">
+                    <circle cx="55" cy="55" r="28" fill="#D4A574"/>
+                    <circle cx="55" cy="55" r="16" fill="#F5C6A0"/>
+                    <circle cx="145" cy="55" r="28" fill="#D4A574"/>
+                    <circle cx="145" cy="55" r="16" fill="#F5C6A0"/>
+                    <circle cx="100" cy="100" r="65" fill="#D4A574"/>
+                    <ellipse cx="100" cy="115" rx="40" ry="32" fill="#F5C6A0"/>
+                    <circle cx="78" cy="92" r="9" fill="#3D2817"/>
+                    <circle cx="122" cy="92" r="9" fill="#3D2817"/>
+                    <circle cx="81" cy="89" r="3" fill="white"/>
+                    <circle cx="125" cy="89" r="3" fill="white"/>
+                    <ellipse cx="100" cy="108" rx="8" ry="6" fill="#3D2817"/>
+                    <path d="M 92 118 Q 100 126 108 118" stroke="#3D2817" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    <circle cx="65" cy="112" r="10" fill="#FFB6C1" opacity="0.6"/>
+                    <circle cx="135" cy="112" r="10" fill="#FFB6C1" opacity="0.6"/>
+                </svg>
+            </div>
+            <h2>Buku Mewarnai</h2>
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+
+    <!-- SLIDE 1: SPLASH SCREEN -->
+    <div id="slide1" class="slide splash-screen" style="display:none;">
+        <div class="splash-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+            <div class="shape shape-6"></div>
+        </div>
+        <div class="sparkles">
+            <span class="sparkle s1">✦</span>
+            <span class="sparkle s2">✦</span>
+            <span class="sparkle s3"></span>
+            <span class="sparkle s4">✦</span>
+            <span class="sparkle s5">✦</span>
+        </div>
+        <div class="splash-content">
+            <div class="splash-character">
+                <svg width="180" height="180" viewBox="0 0 200 200">
+                    <circle cx="55" cy="55" r="28" fill="#D4A574"/>
+                    <circle cx="55" cy="55" r="16" fill="#F5C6A0"/>
+                    <circle cx="145" cy="55" r="28" fill="#D4A574"/>
+                    <circle cx="145" cy="55" r="16" fill="#F5C6A0"/>
+                    <circle cx="100" cy="100" r="65" fill="#D4A574"/>
+                    <ellipse cx="100" cy="115" rx="40" ry="32" fill="#F5C6A0"/>
+                    <circle cx="78" cy="92" r="9" fill="#3D2817"/>
+                    <circle cx="122" cy="92" r="9" fill="#3D2817"/>
+                    <circle cx="81" cy="89" r="3" fill="white"/>
+                    <circle cx="125" cy="89" r="3" fill="white"/>
+                    <ellipse cx="100" cy="108" rx="8" ry="6" fill="#3D2817"/>
+                    <path d="M 92 118 Q 100 128 108 118" stroke="#3D2817" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    <circle cx="65" cy="112" r="10" fill="#FFB6C1" opacity="0.7"/>
+                    <circle cx="135" cy="112" r="10" fill="#FFB6C1" opacity="0.7"/>
+                    <rect x="148" y="135" width="7" height="30" rx="3" fill="#8B6F47" transform="rotate(30 151 150)"/>
+                    <ellipse cx="168" cy="128" rx="11" ry="7" fill="#FF6B9D" transform="rotate(30 168 128)"/>
+                </svg>
+            </div>
+            <h1 class="splash-title">Buku Mewarnai</h1>
+            <p class="splash-subtitle">Ayo bermain dan berkreasi!</p>
+            <button id="btnStart" class="btn-play">
+                <span class="play-icon">▶</span>
+                Mulai Bermain
+            </button>
+        </div>
+    </div>
+
+    <!-- SLIDE 2: BERANDA (Pilih Kategori) -->
+    <div id="slide2" class="slide home-screen" style="display:none;">
+        <header class="app-header">
+            <h1>Buku Mewarnai</h1>
+            <button id="btnGalleryHome" class="header-btn">Galeri</button>
+        </header>
+
+        <div class="home-content">
+            <div class="welcome-section">
+                <h2>Pilih Kategori</h2>
+                <p>Mau mewarnai gambar apa hari ini?</p>
+            </div>
+
+            <div class="category-grid" id="categoryGrid"></div>
+
+            <div class="recent-section">
+                <h3>Karya Terakhir</h3>
+                <div id="recentDrawings" class="recent-grid">
+                    <p style="text-align:center;color:#7A7A7A;grid-column:1/-1;">Belum ada karya</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: PILIH GAMBAR (dalam kategori) -->
+    <div id="slide3" class="slide picker-screen" style="display:none;">
+        <header class="app-header">
+            <button id="btnBackToHome" class="back-btn">← Kembali</button>
+            <h1 id="pickerTitle">Pilih Gambar</h1>
+            <button id="btnGalleryPicker" class="header-btn">Galeri</button>
+        </header>
+
+        <div class="picker-content">
+            <div class="picker-header">
+                <h2 id="pickerCategoryName">Hewan</h2>
+                <p>Pilih gambar yang ingin diwarnai</p>
+            </div>
+
+            <div class="picker-grid" id="pickerGrid"></div>
+        </div>
+    </div>
+
+    <!-- SLIDE 4: CANVAS MEWARNAI -->
+    <div id="slide4" class="slide canvas-screen" style="display:none;">
+        <header class="app-header">
+            <button id="btnBackToPicker" class="back-btn">← Kembali</button>
+            <h1 id="canvasTitle">Mewarnai</h1>
+            <button id="btnGalleryCanvas" class="header-btn">Galeri</button>
+        </header>
+
+        <div class="canvas-content">
+            <div class="welcome-bar">
+                <span id="currentImageName">Gambar</span>
+            </div>
+
+            <div class="canvas-container">
+    <canvas id="mainCanvas"></canvas>
+</div>
+
+            <div class="tools-bar">
+                <div class="tool-group">
+                    <button id="btnBrush" class="tool-btn active">Kuas</button>
+                    <button id="btnEraser" class="tool-btn">Hapus</button>
+                    <button id="btnFill" class="tool-btn">Isi</button>
+                </div>
+                <div class="tool-group size-group">
+                    <label>Ukuran:</label>
+                    <input type="range" id="brushSize" min="3" max="50" value="12">
+                    <span id="sizeValue">12</span>
+                </div>
+                <div class="tool-group action-group">
+                    <button id="btnUndo" class="action-btn">Undo</button>
+                    <button id="btnClear" class="action-btn">Hapus</button>
+                    <button id="btnSave" class="action-btn save-btn">Simpan</button>
+                </div>
+            </div>
+
+            <div class="palette-container">
+                <div class="palette-scroll">
+                    <div class="color-palette" id="colorPalette"></div>
+                </div>
+                <div class="custom-color">
+                    <input type="color" id="customColor" value="#FF6B6B">
+                    <span>Warna Bebas</span>
+                </div>
+            </div>
+
+            <div class="image-selector">
+                <h3>Gambar Lain:</h3>
+                <div class="image-list" id="imageList"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GALLERY MODAL -->
+    <div id="galleryModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Galeri Saya</h2>
+                <button id="closeGallery" class="close-btn">X</button>
+            </div>
+            <div id="galleryContent" class="gallery-content">
+                <p>Memuat...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SAVE MODAL -->
+    <div id="saveModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Simpan Karya</h2>
+                <button id="closeSave" class="close-btn">X</button>
+            </div>
+            <div class="save-form">
+                <input type="text" id="drawingTitle" placeholder="Judul karya..." class="save-input">
+                <div class="save-buttons">
+                    <button id="btnDownload" class="auth-btn primary-btn">Download</button>
+                    <button id="btnSaveCloud" class="auth-btn success-btn">Simpan ke Cloud</button>
+                </div>
+                <div id="saveStatus" class="save-status"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
